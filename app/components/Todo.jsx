@@ -1,6 +1,7 @@
 var React = require('react')
+var createReactClass = require('create-react-class')
 
-var Todo = React.createClass({
+var Todo = createReactClass({
     render() {
         var {id, text} = this.props
         return (

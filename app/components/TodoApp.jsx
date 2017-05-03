@@ -2,8 +2,9 @@ var React = require('react')
 var TodoList = require('TodoList')
 var AddTodo = require('AddTodo')
 var TodoSearch = require('TodoSearch')
+var createReactClass = require('create-react-class')
 
-var TodoApp = React.createClass({
+var TodoApp = createReactClass({
     getInitialState() {
         return {
             showCompleted: false,
