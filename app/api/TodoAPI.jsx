@@ -1,4 +1,4 @@
-var $ = require('jQuery')
+var $ = require('jquery')
 
 module.exports = {
     filterTodos(todos, showCompleted, searchText) {
