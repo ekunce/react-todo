@@ -1,39 +1,39 @@
-var React = require('react')
-var {connect} = require('react-redux');
-var createReactClass = require('create-react-class')
-var moment = require('moment')
-var actions = require('actions');
+import React from 'react';
+import * as Redux from 'react-redux';
 
-export var Todo = createReactClass({
-    render() {
-        var {id, completed, text, createdAt, completedAt, dispatch} = this.props;
-        var todoClassName = completed ? "todo todo-completed" : "todo"
-        var renderDate = () => {
-            var message = 'Created '
-            var timestamp = createdAt
+import * as actions from 'actions';
+import * as moment from 'moment';
 
-            if (completed) {
-                message = 'Completed '
-                timestamp = completedAt
-            }
+export class Todo extends React.Component {
+  render() {
+    var {id, completed, text, createdAt, completedAt, dispatch} = this.props;
+    var todoClassName = completed ? "todo todo-completed" : "todo"
+    var renderDate = () => {
+        var message = 'Created '
+        var timestamp = createdAt
 
-            return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a')
+        if (completed) {
+            message = 'Completed '
+            timestamp = completedAt
         }
-        return (
-            <div className={todoClassName} onClick={() => {
-                    dispatch(actions.startToggleTodo(id, !completed));
-                }}>
-                <div>
-                    <input type="checkbox" checked={completed}/>
-                </div>
 
-                <div>
-                    <p>{text}</p>
-                    <p className="todo__subtext">{renderDate()}</p>
-                </div>
-            </div>
-        )
+        return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a')
     }
-})
+    return (
+        <div className={todoClassName} onClick={() => {
+                dispatch(actions.startToggleTodo(id, !completed));
+            }}>
+            <div>
+                <input type="checkbox" checked={completed}/>
+            </div>
 
-export default connect()(Todo);
+            <div>
+                <p>{text}</p>
+                <p className="todo__subtext">{renderDate()}</p>
+            </div>
+        </div>
+    )
+  }
+}
+
+export default Redux.connect()(Todo);
